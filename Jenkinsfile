@@ -16,7 +16,6 @@ node {
             sh 'npm install webdriver-manager'
             sh 'npm run webdriver-update'
             sh 'npm run webdriver-start'
-            sh 'npm run serve.e2e'
             sh 'npm run e2e'
 
             echo 'Compiling source code'
