@@ -7,8 +7,8 @@ node {
                 userRemoteConfigs: [[credentialsId: 'Aifred_Git', url: 'http://git/ongsa/DeploymentPipeline.git']]])
             
             echo 'Fetching 3rd party dependencies'
-            sh 'npm install webdriver-manager'
-            sh 'npm run webdriver-update'
+ #           sh 'npm install webdriver-manager'
+ #           sh 'npm run webdriver-update'
             sh 'npm install'
             
             echo 'Performing Unit Testing'
