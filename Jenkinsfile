@@ -8,8 +8,10 @@ node {
            "stream 1" : {
                node {
                     echo 'Fetching 3rd party dependencies'
-                    sh 'npm install'
                     sh 'npm install webdriver-manager'
+                    sh 'npm run webdriver-update'
+                    sh 'npm install'
+                    
                     
                     echo 'Performing Unit Testing'
                     sh 'npm test'
@@ -28,8 +30,8 @@ node {
                     sh 'sonarlint --src "src/**"'
 
                     echo 'Static Code Analysis'
-                    def scannerHome = tool 'SonarQube Scanner';
-                    withSonarQubeEnv('My SonarQube Server') {
+                    def scannerHome = tool name: 'SonarQube Scanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
+                    withSonarQubeEnv {
                         sh "${scannerHome}/bin/sonar-scanner"
                     }
                     // sh 'sonar-scanner -Dproject.settings=./sonar-project.properties'
