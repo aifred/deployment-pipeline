@@ -22,7 +22,6 @@
     "lint": "gulp tslint",
     "karma": "karma",
     "karma.start": "karma start",
-    // "postinstall": "gulp check.versions && gulp build.bundle.rxjs && npm prune && gulp webdriver && gulp print.banner",
     "postinstall": "gulp check.versions && gulp build.bundle.rxjs && npm prune && gulp print.banner",
     "reinstall": "npm cache clean && npm install",
     "serve.coverage": "gulp serve.coverage --color",
@@ -124,7 +123,8 @@
     "tslint": "~4.0.0",
     "typescript": "~2.0.9",
     "walk": "^2.3.9",
-    "yargs": "^6.0.0"
+    "yargs": "^6.0.0",
+    "webdriver-manager": "^11.1.0"
   },
   "dependencies": {
     "@angular/common": "~2.4.0",
