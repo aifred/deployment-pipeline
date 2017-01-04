@@ -9,6 +9,7 @@ node {
                node {
                     echo 'Fetching 3rd party dependencies'
                     sh 'npm install'
+                    sh 'npm install webdriver-manager'
                     
                     echo 'Performing Unit Testing'
                     sh 'npm test'
@@ -27,7 +28,7 @@ node {
                    sh 'sonarlint --src "src/**"'
 
                    echo 'Static Code Analysis'
-                   sh 'sonar-scanner'
+                   sh 'sonar-scanner -Dproject.settings=./sonar-project.properties'
                }
            }
        ) 
