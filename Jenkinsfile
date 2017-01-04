@@ -7,11 +7,8 @@ node {
         parallel(
            "stream 1" : {
                node {
-                    echo 'Fetching 3rd party dependencies'
-                    sh 'npm install webdriver-manager'
-                    sh 'npm run webdriver-update'
+                    echo 'Fetching 3rd party dependencies''
                     sh 'npm install'
-                    
                     
                     echo 'Performing Unit Testing'
                     sh 'npm test'
