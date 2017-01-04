@@ -24,7 +24,7 @@ node {
            "stream 2" : {
                node {
                    echo 'Code Linting'
-                   sh 'sonarlint'
+                   sh 'sonarlint --src "src/**"'
 
                    echo 'Static Code Analysis'
                    sh 'sonar-scanner'
