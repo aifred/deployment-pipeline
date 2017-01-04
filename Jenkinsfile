@@ -24,11 +24,15 @@ node {
            },
            "stream 2" : {
                node {
-                   echo 'Code Linting'
-                   sh 'sonarlint --src "src/**"'
+                    echo 'Code Linting'
+                    sh 'sonarlint --src "src/**"'
 
-                   echo 'Static Code Analysis'
-                   sh 'sonar-scanner -Dproject.settings=./sonar-project.properties'
+                    echo 'Static Code Analysis'
+                    def scannerHome = tool 'SonarQube Scanner';
+                    withSonarQubeEnv('My SonarQube Server') {
+                        sh "${scannerHome}/bin/sonar-scanner"
+                    }
+                    // sh 'sonar-scanner -Dproject.settings=./sonar-project.properties'
                }
            }
        ) 
