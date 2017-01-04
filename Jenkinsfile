@@ -7,7 +7,7 @@ node {
         parallel(
            "stream 1" : {
                node {
-                    echo 'Fetching 3rd party dependencies''
+                    echo 'Fetching 3rd party dependencies'
                     sh 'npm install'
                     
                     echo 'Performing Unit Testing'
