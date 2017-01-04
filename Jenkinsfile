@@ -2,25 +2,35 @@
 
 node {
     stage('Build') {
-        node {
-            checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], 
-                userRemoteConfigs: [[credentialsId: 'Aifred_Git', url: 'http://git/ongsa/DeploymentPipeline.git']]])
-            
-            echo 'Fetching 3rd party dependencies'
- //           sh 'npm install webdriver-manager'
- //           sh 'npm run webdriver-update'
-            sh 'npm install'
-            
-            echo 'Performing Unit Testing'
-            sh 'npm test'
-            
-            echo 'Performing Component Test'
-            
-            sh 'npm run e2e'
-            echo 'Compiling source code'
-            sh 'npm run build.prod' 
-            echo 'Distribution Package ${} is created.'
-        }
+        checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], 
+                    userRemoteConfigs: [[credentialsId: 'Aifred_Git', url: 'http://git/ongsa/DeploymentPipeline.git']]])
+        parallel(
+           "stream 1" : {
+               node {
+                    echo 'Fetching 3rd party dependencies'
+                    sh 'npm install'
+                    
+                    echo 'Performing Unit Testing'
+                    sh 'npm test'
+                    
+                    echo 'Performing Component Test'
+                    // TODO: Integrate e2e test
+
+                    echo 'Compiling source code'
+                    sh 'npm run build.prod' 
+                    echo 'Distribution folder is created.'
+                }
+           },
+           "stream 2" : {
+               node {
+                   echo 'Code Linting'
+                   sh 'sonarlint'
+
+                   echo 'Static Code Analysis'
+                   sh 'sonar-scanner'
+               }
+           }
+       ) 
     }
 
     stage('Test') {
