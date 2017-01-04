@@ -3,7 +3,7 @@
 node {
     stage('Build') {
         checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], 
-                    userRemoteConfigs: [[credentialsId: 'Aifred_Git', url: 'http://git/ongsa/DeploymentPipeline.git']]])
+                    userRemoteConfigs: [[credentialsId: 'Aifred_Git', url: 'http://git.fpprod.corp/ongsa/DeploymentPipeline.git']]])
         parallel(
            "stream 1" : {
                node {
