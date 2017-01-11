@@ -2,8 +2,8 @@
 
 node {    
     stage('Build') {
-        // checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], 
-        //             userRemoteConfigs: [[credentialsId: 'Aifred_Git', url: 'http://git.fpprod.corp/ongsa/DeploymentPipeline.git']]])
+        checkout changelog: false, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], 
+            submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'Aifred-Github', url: 'https://github.com/aifred/deployment-pipeline']]]
         parallel(
            "stream 1" : {
                node {
