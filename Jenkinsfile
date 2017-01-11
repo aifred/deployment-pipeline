@@ -2,6 +2,8 @@
 
 node {    
     stage('Build') {
+        checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], 
+            userRemoteConfigs: [[credentialsId: 'Aifred-Github', url: 'https://github.com/aifred/deployment-pipeline.git']]])
         // parallel(
         //    "stream 1" : {
                     echo 'Fetching 3rd party dependencies'
