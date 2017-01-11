@@ -4,8 +4,8 @@ node {
     stage('Build') {
         // checkout changelog: false, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], 
         //     submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'Aifred-Github', url: 'https://github.com/aifred/deployment-pipeline']]]
-        parallel(
-           "stream 1" : {
+        // parallel(
+        //    "stream 1" : {
                     echo 'Fetching 3rd party dependencies'
                     sh 'npm install'
                     
@@ -18,8 +18,8 @@ node {
                     echo 'Compiling source code'
                     sh 'npm run build.prod' 
                     echo 'Distribution folder is created.'
-           },
-           "stream 2" : {
+        //    },
+        //    "stream 2" : {
                     echo 'Code Linting'
                     sh 'sonarlint --src "src/**"'
 
@@ -29,8 +29,8 @@ node {
                         sh "${scannerHome}/bin/sonar-scanner"
                     }
                     // sh 'sonar-scanner -Dproject.settings=./sonar-project.properties'
-           }
-       ) 
+        //    }
+    //    ) 
     }
 
     stage('Test') {
