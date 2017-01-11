@@ -36,4 +36,6 @@ node {
 
     stage('Deploy') {
     }
+    // empty the workspace
+    deleteDir()
 }
