@@ -1,6 +1,8 @@
 #!groovy
 
 node {
+    // clean up the existing workspace
+    deleteDir()
     stage('Build') {
         // checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], 
         //             userRemoteConfigs: [[credentialsId: 'Aifred_Git', url: 'http://git.fpprod.corp/ongsa/DeploymentPipeline.git']]])
