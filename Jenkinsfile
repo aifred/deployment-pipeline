@@ -1,9 +1,9 @@
 #!groovy
 
-node {
-    // clean up the existing workspace
-    deleteDir()
+node {    
     stage('Build') {
+        // clean up the existing workspace
+        deleteDir()
         // checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], 
         //             userRemoteConfigs: [[credentialsId: 'Aifred_Git', url: 'http://git.fpprod.corp/ongsa/DeploymentPipeline.git']]])
         parallel(
