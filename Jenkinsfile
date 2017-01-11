@@ -37,5 +37,7 @@ node {
     stage('Deploy') {
     }
     // empty the workspace
-    deleteDir()
+    stage('Clean up') {
+        deleteDir()    
+    }    
 }
